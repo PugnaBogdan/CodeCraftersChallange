@@ -1,0 +1,45 @@
+﻿@model OTPMVC.Models.UserInput
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>User Input</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GenerateOTP">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" required/>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateTimeInput" class="control-label"></label>
+                <input asp-for="DateTimeInput" class="form-control" required/>
+                <span asp-validation-for="DateTimeInput" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <a asp-action="Index">Clear</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        var message = '@TempData["Message"]';
+        if (message) {
+            alert(message);
+        }
+    </script>
+}
+<style>
+    a, u {
+        text-decoration: none;
+    }
+</style>
